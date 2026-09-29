@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="de" class="dark h-full bg-black text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physiologische Optimierung & Strukturelle Ästhetik – Masterclass</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffaff',
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090d16; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0891b2; }
+
+    /* Glassmorphism Effects */
+    .glass-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    
+    .glass-nav {
+      background: rgba(5, 8, 15, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glow-effect {
+      box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.15);
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col font-sans overflow-x-hidden bg-[#030712]">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 w-full glass-nav px-4 lg:px-8 py-3 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchView('landing')">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-blue-600 flex items-center justify-center shadow-lg shadow-brand-500/20">
+          <i data-lucide="dna" class="w-5 h-5 text-black font-bold"></i>
+        </div>
+        <div>
+          <span class="font-bold tracking-tight text-white text-base block leading-none">PHYSIO<span class="text-brand-400">LAB</span></span>
+          <span class="text-[10px] font-mono text-slate-400 tracking-wider uppercase">Optimization Protocol</span>
+        </div>
+      </div>
+
+      <!-- Action Button / Access Control -->
+      <div class="flex items-center gap-4">
+        <button id="nav-viewer-btn" onclick="switchView('viewer')" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700/50 transition">
+          <i data-lucide="book-open" class="w-4 h-4 text-brand-400"></i>
+          <span>Zum Kompendium</span>
+        </button>
+
+        <button id="nav-cta-btn" onclick="scrollToPricing()" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-brand-500 to-blue-600 hover:from-brand-400 hover:to-blue-500 text-black shadow-lg shadow-brand-500/20 transition transform active:scale-95">
+          <i data-lucide="zap" class="w-4 h-4"></i>
+          <span>Zugang freischalten</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (SWAPS BETWEEN LANDING & VIEWER) -->
+  <main class="flex-1 flex flex-col">
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: LANDING & SALES PAGE              -->
+    <!-- ========================================== -->
+    <div id="view-landing" class="flex-1 flex flex-col">
+      
+      <!-- HERO SECTION -->
+      <section class="relative py-20 lg:py-28 px-4 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-blue-600/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-6">
+          
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono">
+            <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+            Physiologische Optimierung &amp; Strukturelle Ästhetik
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            Das wissenschaftliche Protokoll zur <span class="text-gradient">menschlichen Transformation</span>
+          </h1>
+
+          <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+            Ein umfassender, evidenzbasierter Leitfaden zu kraniofazialer Ästhetik, Hormon-Biochemie, Dermatologie und Body-Recomposition. Formatierte Masterclass mit 52 tiefgehend ausgearbeiteten Modul-Slides.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button onclick="scrollToPricing()" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-brand-500 to-blue-600 hover:from-brand-400 hover:to-blue-500 text-black shadow-xl shadow-brand-500/25 transition transform hover:-translate-y-0.5">
+              Jetzt Zugang wählen
+            </button>
+            <button onclick="switchView('viewer')" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-sm bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-800 transition">
+              Vorschau ansehen
+            </button>
+          </div>
+
+          <!-- Quick Metrics -->
+          <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-left">
+            <div class="glass-card p-4 rounded-xl">
+              <div class="text-2xl font-bold font-mono text-brand-400">52</div>
+              <div class="text-xs text-slate-400 mt-1">Ausführliche Slides</div>
+            </div>
+            <div class="glass-card p-4 rounded-xl">
+              <div class="text-2xl font-bold font-mono text-brand-400">7</div>
+              <div class="text-xs text-slate-400 mt-1">Kernmodule</div>
+            </div>
+            <div class="glass-card p-4 rounded-xl">
+              <div class="text-2xl font-bold font-mono text-brand-400">100%</div>
+              <div class="text-xs text-slate-400 mt-1">Evidenzbasiert</div>
+            </div>
+            <div class="glass-card p-4 rounded-xl">
+              <div class="text-2xl font-bold font-mono text-brand-400">24/7</div>
+              <div class="text-xs text-slate-400 mt-1">Web-Zugriff</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PRICING SECTION -->
+      <section id="pricing-section" class="py-16 px-4 relative z-10 bg-slate-950/50 border-t border-slate-900">
+        <div class="max-w-5xl mx-auto">
+          
+          <div class="text-center space-y-3 mb-12">
+            <h2 class="text-3xl font-bold text-white tracking-tight">Wähle deine Ausbaustufe</h2>
+            <p class="text-slate-400 text-sm max-w-lg mx-auto">Vom praktischen Einsteiger-Leitfaden bis zur tiefgehenden medizinisch-biochemischen Analyse.</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 items-stretch">
+            
+            <!-- PACKAGE 1: BASIC (19,99 €) -->
+            <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-slate-800 hover:border-slate-700 transition relative">
+              <div>
+                <div class="inline-block px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono font-medium mb-4">BASIC EDITION</div>
+                <h3 class="text-2xl font-bold text-white">Grundlagen Protocol</h3>
+                <p class="text-slate-400 text-xs mt-2 leading-relaxed">Perfekt für den praktischen Einstieg mit allen 52 ausführlichen Slides, klaren Handlungsempfehlungen und Alltags-Routinen.</p>
+                
+                <div class="my-6">
+                  <span class="text-4xl font-extrabold font-mono text-white">19,99 €</span>
+                  <span class="text-slate-500 text-xs font-mono ml-1">/ Einmalzahlung</span>
+                </div>
+
+                <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800/80 pt-6">
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Zugang zu allen 52 Slides &amp; 7 Modulen</strong></span>
+                  </div>
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Praktische Basics:</strong> Ausführliches Mewing, Zungenruhelage & Haltungsschulung</span>
+                  </div>
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Standard Routinen:</strong> Hautpflege, Haircare & Entwässerungs-Tricks</span>
+                  </div>
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Fitness & Lifestyle:</strong> Ernährungs-Basics, Schlafhygiene & V-Taper Grundlagen</span>
+                  </div>
+                  <div class="flex items-start gap-2.5 opacity-40">
+                    <i data-lucide="x-circle" class="w-4 h-4 text-slate-500 shrink-0 mt-0.5"></i>
+                    <span class="line-through">Tiefere medizinische &amp; biochemische Detail-Analysen</span>
+                  </div>
+                  <div class="flex items-start gap-2.5 opacity-40">
+                    <i data-lucide="x-circle" class="w-4 h-4 text-slate-500 shrink-0 mt-0.5"></i>
+                    <span class="line-through">Detaillierte Endokrinologie-, Laborwerte- &amp; Pharmakologie-Guides</span>
+                  </div>
+                </div>
+              </div>
+
+              <button onclick="openCheckout('basic', '19,99 €')" class="mt-8 w-full py-3.5 px-4 rounded-xl font-bold text-xs bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 transition">
+                Basic Zugang kaufen
+              </button>
+            </div>
+
+            <!-- PACKAGE 2: PRO / MEDICAL (39,99 €) -->
+            <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-brand-500/50 glow-effect relative bg-gradient-to-b from-slate-900/90 to-slate-950/90">
+              <div class="absolute -top-3 right-6 px-3 py-1 rounded-full bg-gradient-to-r from-brand-500 to-blue-600 text-black font-bold text-[10px] tracking-wider uppercase shadow-md">
+                Empfohlen für Profis
+              </div>
+
+              <div>
+                <div class="inline-block px-3 py-1 rounded-md bg-brand-500/20 text-brand-300 text-xs font-mono font-medium mb-4">MEDICAL &amp; ADVANCED EDITION</div>
+                <h3 class="text-2xl font-bold text-white">Full Protocol &amp; Biochemistry</h3>
+                <p class="text-slate-400 text-xs mt-2 leading-relaxed">Für maximale Resultate: Schaltet zusätzlich alle tiefgehenden medizinischen, anatomischen und biochemischen Vertiefungen frei.</p>
+                
+                <div class="my-6">
+                  <span class="text-4xl font-extrabold font-mono text-white">39,99 €</span>
+                  <span class="text-slate-500 text-xs font-mono ml-1">/ Einmalzahlung</span>
+                </div>
+
+                <div class="space-y-3 text-xs text-slate-200 border-t border-slate-800/80 pt-6">
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Enthält alle Inhalte aus der Basic Edition</strong></span>
+                  </div>
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Kraniofaziale Anatomie:</strong> Suturen-Remodellierung & Knochendichte-Biochemie</span>
+                  </div>
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Endokrinologie & Hormonsystem:</strong> Detaillierte Analysen zu Testosteron, DHT, SHBG & Aromatase</span>
+                  </div>
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Laborwerte-Leitfaden:</strong> Blutbild-Interpretation & gezielte Supplementation</span>
+                  </div>
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
+                    <span><strong>Erweiterte Pharmakologie:</strong> Wirkstoff-Analysen (Finasterid, Minoxidil, Retinoide, Peptide)</span>
+                  </div>
+                </div>
+              </div>
+
+              <button onclick="openCheckout('pro', '39,99 €')" class="mt-8 w-full py-3.5 px-4 rounded-xl font-bold text-xs bg-gradient-to-r from-brand-500 to-blue-600 hover:from-brand-400 hover:to-blue-500 text-black shadow-lg shadow-brand-500/20 transition transform active:scale-95">
+                Full Medical Zugang kaufen
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: INTERACTIVE SLIDE VIEWER           -->
+    <!-- ========================================== -->
+    <div id="view-viewer" class="hidden flex-1 flex flex-col lg:flex-row h-[calc(100vh-61px)] overflow-hidden">
+      
+      <!-- SIDEBAR / DRAWER -->
+      <aside id="sidebar" class="w-full lg:w-80 glass-card border-r border-slate-800 flex flex-col shrink-0 lg:h-full z-20 transition-all duration-300">
+        
+        <!-- Sidebar Header -->
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i data-lucide="layers" class="w-4 h-4 text-brand-400"></i>
+            <span class="text-xs font-bold text-white uppercase tracking-wider">Inhaltsverzeichnis</span>
+          </div>
+          <span id="tier-badge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-500/10 text-brand-400 border border-brand-500/20">BASIC</span>
+        </div>
+
+        <!-- Modules & Slides List -->
+        <div id="modules-list" class="flex-1 overflow-y-auto p-3 space-y-3 text-xs">
+          <!-- Dynamically Generated via JS -->
+        </div>
+
+      </aside>
+
+      <!-- MAIN SLIDE DISPLAY AREA -->
+      <section class="flex-1 flex flex-col bg-[#030712] relative overflow-hidden h-full">
+        
+        <!-- Slide Top Bar -->
+        <div class="p-4 border-b border-slate-900 flex items-center justify-between text-xs font-mono text-slate-400 bg-slate-950/40">
+          <div id="slide-module-title" class="flex items-center gap-2 text-brand-400 font-semibold">
+            <!-- Dynamic Module Title -->
+          </div>
+          <div id="slide-counter" class="bg-slate-900 px-2.5 py-1 rounded-md border border-slate-800">
+            Slide 1 / 52
+          </div>
+        </div>
+
+        <!-- Slide Scrollable Content -->
+        <div class="flex-1 overflow-y-auto p-6 lg:p-12">
+          <div class="max-w-3xl mx-auto space-y-8">
+            
+            <!-- Slide Content Body -->
+            <div id="slide-content-container" class="space-y-6">
+              <!-- Dynamically Populated via JS -->
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Slide Navigation Bottom Bar -->
+        <div class="p-4 border-t border-slate-900 glass-nav flex items-center justify-between">
+          <button id="btn-prev" onclick="prevSlide()" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold text-xs border border-slate-800 flex items-center gap-2 transition disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            <span>Zurück</span>
+          </button>
+
+          <button id="btn-next" onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-black font-bold text-xs shadow-lg shadow-brand-500/20 flex items-center gap-2 transition">
+            <span>Nächste Folie</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- CHECKOUT / SIMULATED PAYMENT MODAL         -->
+  <!-- ========================================== -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="glass-card max-w-md w-full rounded-2xl p-6 border-slate-800 space-y-6 relative">
+      
+      <button onclick="closeCheckout()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="space-y-2">
+        <span class="text-[10px] font-mono uppercase text-brand-400 tracking-wider">Sicherer Checkout</span>
+        <h3 id="checkout-title" class="text-xl font-bold text-white">Zugang freischalten</h3>
+        <p class="text-xs text-slate-400">Erhalte sofortigen digitalen Zugriff auf die ausgewählte Edition.</p>
+      </div>
+
+      <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+        <div>
+          <div id="checkout-package-name" class="font-bold text-sm text-white">Basic Edition</div>
+          <div class="text-[11px] text-slate-400">Lebenslanger Zugriff</div>
+        </div>
+        <div id="checkout-package-price" class="text-xl font-mono font-extrabold text-brand-400">19,99 €</div>
+      </div>
+
+      <!-- Simulated Payment Methods -->
+      <div class="space-y-3">
+        <button onclick="processSimulatedPayment()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-blue-600 hover:from-brand-400 hover:to-blue-500 text-black font-bold text-xs shadow-lg shadow-brand-500/20 flex items-center justify-center gap-2 transition">
+          <i data-lucide="credit-card" class="w-4 h-4"></i>
+          <span>Jetzt zahlungspflichtig bestellen</span>
+        </button>
+      </div>
+
+      <p class="text-[10px] text-slate-500 text-center leading-relaxed">
+        Dies ist eine Simulation. Beim Klick auf den Button wird der gewählte Zugang im Browser freigeschaltet.
+      </p>
+
+    </div>
+  </div>
+
+  <!-- JS LOGIK & EXTENDED DETAILED 52 SLIDES -->
+  <script>
+    // FULL EXTENDED 52 SLIDES DATA WITH DETAILED TEXTS, DETAILED PRACTICAL GUIDES, AND ADVANCED MEDICAL INFOS
+    const slidesData = [
+      // MODUL 1: Kraniofaziale Architektur & Faziale Ästhetik
+      { 
+        id: 1, 
+        module: "Modul 1: Kraniofaziale Architektur & Faziale Ästhetik", 
+        title: "Einführung in die kraniofaziale Biometrie & Ästhetik", 
+        text: "Die knöcherne Architektur des Schädels bildet das fundamentale Gerüst, das die gesamte faziale Ästhetik, Weichgewebsauflagerung und visuelle Attraktivität bestimmt. Schlüsselparameter wie der bikondyläre Abstand (Breite des Unterkiefers), die anteroposteriore Maxillaposition (Mittelgesichtsprojektion) sowie der goniale Winkel bestimmen maßegeblich, wie straff Haut und Fettgewebe über den Knochen gespannt sind. Eine nach vorne und oben rotierte Maxilla sorgt für hervorragende Support-Strukturen der Augenhöhlen (Periorbitalregion) und eine ausgeprägte Jawline.", 
+        practical: "Führe eine systematische Haltungs- und Symmetrieanalyse durch: Stelle dich barfuß vor einen Spiegel mit neutralem Blick. Prüfe, ob die Ohren auf gleicher Höhe liegen und ob die Kopfhaltung nach vorne geneigt ist (Forward Head Posture). Achte im Alltag konsequent darauf, das Brustbein leicht anzuheben und die HWS (Halswirbelsäule) zu strecken.", 
+        medicalInfo: "Mechanische Traktion und funktionelle Kräfte wirken kontinuierlich auf die kraniofazialen Knochenstrukturen. Über das Mechanotransduktions-Prinzip führt gezielter physiologischer Druck zur Umstrukturierung der Knochenmatrix. Osteoblasten erhöhen die Mineralisation im Bereich hoher biomechanischer Belastung, was die Knochendichte nach dem Wolffschen Gesetz stärkt." 
+      },
+      { 
+        id: 2, 
+        module: "Modul 1: Kraniofaziale Architektur & Faziale Ästhetik", 
+        title: "Anatomie des Viszerokraniums: Maxilla, Mandibel, Zygoma", 
+        text: "Das Viszerokranium (Gesichtsschädel) besteht aus 14 einzelnen Knochen, von denen Maxilla, Mandibel und Zygoma die ästhetisch dominantesten sind. Die Maxilla (Oberkiefer) ist das Zentrum der fazialen Projektion; wenn sie zurückverlagert ist, fehlt der Support für die Wange und die unteren Augenlider. Die Mandibel (Unterkiefer) definiert das untere Drittel des Gesichts und den Zungenbeinbereich. Das Zygoma (Jochbein) erzeugt die markante, dreidimensionale Gesichtsbreite und den 'Hollow Cheek'-Effekt.", 
+        practical: "Vermeide konsequent jegliche Form der Mundatmung. Halte die Lippen im Ruhezustand sanft geschlossen. Überprüfe stündlich deine Kieferhaltung: Die Zähne sollten sich im Ruhezustand nicht fest berühren, sondern 1-2 mm Abstand haben, während die Zunge oben anliegt.", 
+        medicalInfo: "Die kraniofazialen Suturen (z.B. Sutura palatina mediana, Sutura zygomaticomaxillaris) sind faserige Knochennähte, die zeitlebens mit Sharpey-Fasern durchzogen sind. Sie bleiben mikroskopisch dynamisch und reagieren auf mechanische Zug- und Druckkräfte durch Aktivierung von Runx2-Transkriptionsfaktoren, was lokales Knochen-Remodeling stimuliert." 
+      },
+      { 
+        id: 3, 
+        module: "Modul 1: Kraniofaziale Architektur & Faziale Ästhetik", 
+        title: "Wolfsches Gesetz & Mechanotransduktion am Gesichtsschädel", 
+        text: "Das Wolffsche Gesetz besagt, dass sich Knochengewebe adaptiv an die mechanischen Belastungen anpasst, die auf es einwirken. Durch Erhöhung der funktionellen Kaukraft und biomechanischen Zungendruck erzeugt das umliegende Muskelgewebe Piezoelektrizität und mechanische Scherkräfte auf die Knochenmatrix. Dies führt langfristig zu einer Dichteerhöhung und einer Verdickung der Kortikalis im Kiefer- und Mittelgesichtsbereich.", 
+        practical: "Integriere progressives Kautraining in deine Routine: Fange mit zäherer Nahrung (z.B. Wurzelgemüse, Steak) an oder nutze spezielles Kautrainingsgummi. Trainiere 3 Mal pro Woche für 10-15 Minuten und achte strikt auf symetrische Belastung beider Zahnreihen.", 
+        medicalInfo: "Osteozyten agieren als primäre Mechanosensoren im Knochenkanal-Netzwerk (Lakulär-kanalikuläres System). Belastung induziert Flüssigkeitsverschiebungen, welche Integrin-vermittelte Kaskaden aktivieren. Dies führt zur Herabregulation von Sclerostin und zur Steigerung von RANKL/OPG-Signalwegen, was den Knochenaufbau bevorzugt." 
+      },
+      { 
+        id: 4, 
+        module: "Modul 1: Kraniofaziale Architektur & Faziale Ästhetik", 
+        title: "Zungenruhelage (Mewing) & Gaumendruck-Dynamik", 
+        text: "Die korrekte Zungenruhelage – auch bekannt als 'Mewing' – beschreibt das vollständige Anlegen des Zungenkörpers an den harten und weichen Gaumen. Nicht nur die Zungenspitze, sondern insbesondere das hintere Drittel der Zunge muss kontinuierlichen Druck nach oben und vorne ausüben. Dieser dauerhafte Druck unterstützt die maxilläre Breite, verhindert das Kollabieren des Zahnbogens und strafft den Musculus mylohyoideus unterhalb des Kinns.", 
+        practical: "Übung zur Zungenplatzierung: Mache den Laut 'NG' (wie im Wort 'Ring') oder schlucke Speichel und halte die Zunge am Ende des Schluckvorgangs flach am Gaumen gefangen. Überprüfe, ob deine Atmung durch die Nase weiterhin frei fließen kann. Wende diese Haltung 24/7 unbewusst an.", 
+        medicalInfo: "Der Musculus genioglossus übt bei korrekter Lage einen hydrostatischen Druck von 50 bis 100 Gramm auf das Os palatinum und die Maxilla aus. Diese kontinuierliche Niedrigkraft-Belastung stimuliert die Umstrukturierung des Gaumendaches und fördert die transversale Nacherweiterung des Zahnbogens." 
+      },
+      { 
+        id: 5, 
+        module: "Modul 1: Kraniofaziale Architektur & Faziale Ästhetik", 
+        title: "Orale Haltung, Unterkiefer-Positionierung & Kiefergelenk", 
+        text: "Eine fehlerhafte orale Haltung führt oft zu einer Fehlstellung der Mandibel im Kiefergelenk (Articulatio temporomandibularis). Wenn der Unterkiefer chronisch nach hinten sinkt (Retrusionsstellung), verengt sich der Atemweg in der Oropharynx-Region. Dies führt zu kompensatorischer Kopf-Vorhalteschaltung und erzeugt ein optisches Doppelkinn, selbst bei niedrigem Körperfettanteil.", 
+        practical: "Achte beim Schlucken darauf, keine Gesichtsmuskeln oder Lippen zusammenzuziehen (kein 'Grimassieren'). Der Schluckakt muss isoliert durch den Zungenschub gegen den Gaumen erfolgen. Beseitige Zähneknirschen (Bruxismus) durch Entspannungsübungen oder eine Knirscherschiene.", 
+        medicalInfo: "Chronische Retrusionsstellungen der Mandibel belasten die bilaminäre Zone des Kiefergelenks und können zu Mikrotraumen im Discus articularis führen. Die Neuausrichtung durch korrekte Muskeltonisierung entlastet den Musculus pterygoideus lateralis und korrigiert die biomechanische Belastungsebene." 
+      },
+      { 
+        id: 6, 
+        module: "Modul 1: Kraniofaziale Architektur & Faziale Ästhetik", 
+        title: "Hypertrophie des Musculus Masseter durch gezieltes Kautraining", 
+        text: "Der Musculus masseter ist der Hauptkaumuskel und gehört bezogen auf seine Fläche zu den stärksten Muskeln des menschlichen Körpers. Durch gezieltes Hypertrophietraining kann das Volumen dieses Muskels an den Kieferwinkeln erhöht werden. Dies führt zu einer optischen Verbreiterung des unteren Gesichtsdrittels und schärft die Kontur zwischen Hals und Unterkiefer (Jawline).", 
+        practical: "Protokoll für Masseter-Training: Nutze 2-3 Mal pro Woche zähes Kaugummi oder Mastic Gum. Führe 3 Sätze à 10-15 Minuten durch, gefolgt von Dehnübungen für den Kiefer. Wichtig: Bei Schmerzen, Knacken oder TMJ-Symptomen das Training sofort abbrechen.", 
+        medicalInfo: "Skelettmuskel-Hypertrophie des M. masseter folgt den gleichen biochemischen Prinzipien wie die Rumpfmuskulatur: Mekanischer Stress induziert Mikrotraumen, woraufhin Myofibrillen über die mTORC1-Signalkaskade aufgebaut werden. Die Fasertypen des Masseters bestehen überwiegend aus Typ-I- und Typ-IIa-Fasern, die gut auf hohe Wiederholungszahlen und kontinuierliche Spannung reagieren." 
+      },
+      { 
+        id: 7, 
+        module: "Modul 1: Kraniofaziale Architektur & Faziale Ästhetik", 
+        title: "Symmetrie-Analyse & Kaumuster-Korrektur", 
+        text: "Asymmetrien im Gesicht entstehen sehr häufig durch einseitige Kaugewohnheiten, einseitiges Schlafen oder unilaterale Fehlhaltungen. Wenn Nahrung überwiegend auf einer Seite gekaut wird, hypertrophiert der Musculus masseter dieser Seite einseitig, während die Gegenseite atrophiert. Zudem wird der Knochen auf der dominanten Seite einer höheren Belastung ausgesetzt.", 
+        practical: "Beobachte dein Kaumuster über eine Woche hinweg genau. Wenn du eine Schokoladenseite beim Kauen bemerkst, verlege 60-70% der Kauaktivität bewusst auf die schwächere Seite, bis die muskuläre Symmetrie wiederhergestellt ist.", 
+        medicalInfo: "Unilaterale Kaumuster führen zu asymmetrischen Vektoren auf die Symphysis menti und den Ramus mandibulae. Dies kann zu struktureller Remodellierung der Kondylen führen und langfristig den Okklusionswinkel der Zähne verändern." 
+      },
+      { 
+        id: 8, 
+        module: "Modul 1: Kraniofaziale Architektur & Faziale Ästhetik", 
+        title: "Atmungsphysiologie: Nasenatmung vs. Mundatmung", 
+        text: "Die Atemwegsphysiologie nimmt einen direkten Einfluss auf die kraniofaziale Entwicklung. Chronische Mundatmung führt zum Absinken des Unterkiefers und der Zunge. Dies bewirkt eine vertikale Gesichtsverlängerung, schmale Zahnbögen und eingefallene Mittelgesichtsstrukturen ('Mouthbreather Facies'). Nasenatmung hingegen stellt die natürliche Filtermethode dar und erhält den intraoralen Unterdruck aufrecht.", 
+        practical: "Setze tagsüber auf 100% kontrollierte Nasenatmung. Nutze für die Nacht ein spezielles medizinisches Mouth Tape (Mund-Klebeband), um unbewusste Mundatmung im Schlaf zu verhindern. Stelle sicher, dass die Nasengänge frei sind (ggf. Nasendusche nutzen).", 
+        medicalInfo: "Nasenatmung stimuliert die Produktion von Stickstoffmonoxid (NO) in den paranasalen Sinussen. NO ist ein potenter Vasodilatator, der das Belüftungs-Perfusions-Verhältnis in den Lungen verbessert und die Gewebesauerstoffversorgung um bis zu 15% steigert." 
+      },
+
+      // MODUL 2: Fluid-Dynamik, Entwässerung & Subkutane Definition
+      { 
+        id: 9, 
+        module: "Modul 2: Fluid-Dynamik, Entwässerung & Subkutane Definition", 
+        title: "Physiologie des subkutanen Gewebes & Extrazellulärraums", 
+        text: "Die visuelle Definition von Muskelstrukturen und scharfen Gesichtszügen wird stark durch das Verhältnis von intrazellulärer zu extrazellulärer Flüssigkeit bestimmt. Das Gewebe unter der Haut (Subkutis) speichert Wasser im Interstitium. Ein Überschuss an extrazellulärem Wasser verschleiert selbst bei niedrigem Körperfettanteil die knöchernen und muskulären Konturen.", 
+        practical: "Eliminiere hochverarbeitete Lebensmittel mit versteckten Natriumspitzen und Konservierungsstoffen aus deiner Ernährung. Trinke ausreichend Wasser, um dem Körper das Signal zu geben, kein Wasser im Bindegewebe einzulagern.", 
+        medicalInfo: "Die Flüssigkeitsverschiebung zwischen Kapillaren und Interstitium folgt den Starling-Gleichungen. Der kapilläre hydrostatische Druck und der kolloidosmotische Druck des Plasmas bestimmen, wie viel Flüssigkeit in den Extrazellulärraum filtriert wird." 
+      },
+      { 
+        id: 10, 
+        module: "Modul 2: Fluid-Dynamik, Entwässerung & Subkutane Definition", 
+        title: "Elektrolyt-Biochemie: Natrium-Kalium-Pumpe & Osmose", 
+        text: "Das Gleichgewicht zwischen Natrium (Na+) und Kalium (K+) ist der wichtigste Regler des zellulären Wasserhaushalts. Natrium befindet sich überwiegend außerhalb der Zelle und zieht Wasser in den Extrazellulärraum. Kalium ist der dominierende intrazelluläre Cation-Träger und zieht Wasser direkt in die Muskel- und Gewebezellen, was zu prallerem Gewebe führt.", 
+        practical: "Achte auf ein ausgewogenes Verhältnis: Strebe eine tägliche Zufuhr von ca. 4000-5000 mg Kalium (durch Spinat, Avocados, Kartoffeln, Bananen) und 2000-3000 mg Natrium an. Vermeide extreme Natriumschwankungen.", 
+        medicalInfo: "Die enzymatische Na+/K+-ATPase transportiert unter ATP-Verbrauch 3 Na+-Ionen aus der Zelle und 2 K+-Ionen in die Zelle. Eine Erhöhung des intrazellulären Kaliumspiegels steigert das Zellvolumen der Myozyten und senkt das interstitielle Ödemvolumen." 
+      },
+      { 
+        id: 11, 
+        module: "Modul 2: Fluid-Dynamik, Entwässerung & Subkutane Definition", 
+        title: "Aldosteron-Regulation & Renin-Angiotensin-System (RAAS)", 
+        text: "Aldosteron ist ein Steroidhormon aus der Nebennierenrinde, welches die Natrium- und Wasserrückresorption in den Nieren steuert. Wenn die Natriumzufuhr plötzlich drastisch gesenkt wird, reagiert der Körper mit einer massiven Ausschüttung von Aldosteron, was zu starker reaktiver Wasserretention (Rebound-Effekt) führt.", 
+        practical: "Halte deine tägliche Salzaufnahmen streng konstant. Wenn du deine Salzzufuhr anpassen möchtest, tue dies schrittweise über mehrere Tage hinweg, um Aldosteronspitzen zu vermeiden.", 
+        medicalInfo: "Eine Aktivierung des Renin-Angiotensin-Aldosteron-Systems (RAAS) führt zur Bindung von Aldosteron an Mineralokortikoid-Rezeptoren im distalen Tubulus der Niere. Dies schaltet ENaC-Kanäle (Epitheliale Natriumkanäle) hoch und verstärkt die Wasserretention." 
+      },
+      { 
+        id: 12, 
+        module: "Modul 2: Fluid-Dynamik, Entwässerung & Subkutane Definition", 
+        title: "Lymphatisches System des Gesichts & Manuelle Drainage", 
+        text: "Das lymphatische System ist für den Abtransport von Stoffwechselabfällen, Zelltrümmern und überschüssiger interstitieller Flüssigkeit verantwortlich. Im Gesichtsbereich kann es durch Schlafpositionen, Entzündungen oder mangelnde Bewegung zu Lymphstauungen kommen, was zu einem aufgedunsenen Gesicht ('Puffy Face') führt.", 
+        practical: "Morgendliche Routine: Führe eine 5-minütige sanfte Lymphdrainage durch. Streiche mit leichtem Druck von der Gesichtsmitte sanft nach außen zu den Ohrläppchen und von dort entlang des Halses nach unten zu den Schlüsselbeinen.", 
+        medicalInfo: "Lymphgefäße besitzen keine eigene zentrale Pumpe; der Fluss wird durch glatte Muskelkontraktionen der Lymphangione und externe Druckunterschiede generiert. Manuelle Drainage erhöht die Pumprate der initialen Lymphkapillaren erheblich." 
+      },
+      { 
+        id: 13, 
+        module: "Modul 2: Fluid-Dynamik, Entwässerung & Subkutane Definition", 
+        title: "Hydratations-Strategien für maximale vasculäre Definition", 
+        text: "Wer zu wenig trinkt, behält paradoxerweise mehr Wasser im Gewebe. Ein chronischer Flüssigkeitsmangel signalisiert dem Körper einen Überlebensmodus, woraufhin Wasser im Bindegewebe konserviert wird. Eine hohe, kontinuierliche Wasserzufuhr hält die Nierenaktivität hoch und spült überschüssige Salze kontinuierlich aus.", 
+        practical: "Trinke jeden Tag konstant zwischen 3,5 und 4,5 Litern klares Wasser. Verteile die Menge gleichmäßig von morgens bis 2 Stunden vor dem Schlafen, um den Schlaf nicht durch nächtliche Toilettengänge zu stören.", 
+        medicalInfo: "Hohe Flüssigkeitszufuhr unterdrückt die Ausschüttung des Antidiuretischen Hormons (ADH / Vasopressin) im Hypophysenhinterlappen. Niedrige ADH-Spiegel führen zur Schließung von Aquaporin-2-Kanälen in den Sammelrohren der Niere und induzieren Diurese." 
+      },
+      { 
+        id: 14, 
+        module: "Modul 2: Fluid-Dynamik, Entwässerung & Subkutane Definition", 
+        title: "Natürliche Diuretika & Pflanzenstoffe: Löwenzahn, Brennnessel, Koffein", text: "Bestimmte Pflanzenauszüge und Flavonoide besitzen schonende diuretische Eigenschaften. Sie steigern die glomeruläre Filtrationsrate der Nieren und unterstützen die Ausscheidung von überschüssigem Wasser, ohne das Elektrolytgleichgewicht negativ zu beeinträchtigen.", 
+        practical: "Setze bei Bedarf (z.B. vor Shootings oder Events) für 3-5 Tage auf Löwenzahnwurzel-Extrakt (Taraxacum) und Brennnesseltee. Nutze moderaten Koffeinkonsum am Morgen als natürliches Diuretikum.", 
+        medicalInfo: "Taraxacum officinale wirkt als Kalium-sparendes Diuretikum. Es erhöht die renale Enzymaktivität der Nierenfiltration, ohne – im Gegensatz zu Schleifendiuretika – einen gefährlichen Kaliumverlust zu erzeugen." 
+      },
+      { 
+        id: 15, 
+        module: "Modul 2: Fluid-Dynamik, Entwässerung & Subkutane Definition", 
+        title: "Entzündungsbedingte Ödeme: Histamin, Cortisol & Nahrungsmittel", 
+        text: "Subklinische Nahrungsmittelunverträglichkeiten und chronisch erhöhte Stresshormone (Cortisol) führen zu lokalen Entzündungsreaktionen. Histamin erhöht die Durchlässigkeit der Blutgefäße, wodurch Flüssigkeit direkt ins Gewebe entweicht und Ödeme im Gesicht und am Bauch entstehen.", 
+        practical: "Führe eine 14-tägige Eliminationsdiät durch: Meide Milchprodukte, Gluten, künstliche Süßstoffe und stark verarbeitete Fette. Beobachte, ob Gesichtsödem und Hautbild sich deutlich verbessern.", 
+        medicalInfo: "Histamin bindet an H1-Rezeptoren der Endothelzellen, was zu einer Kontraktion der Endothelzellen und der Bildung interzellulärer Spalten führt. Dadurch treten intravasale Proteine und Wasser ins Interstitium aus." 
+      },
+
+      // MODUL 3: Dermatologische Wissenschaft & Mikrobiom
+      { 
+        id: 16, 
+        module: "Modul 3: Dermatologische Wissenschaft & Mikrobiom", 
+        title: "Anatomie der Dermis & Epidermis: Stratum Corneum & Barriere", 
+        text: "Die Haut ist das größte Organ des Körpers. Die äußerste Schicht, das Stratum Corneum, schützt vor transepidermaler Wasserverlust (TEWL) und dem Eindringen von Krankheitserregern. Eine gesunde Hautbarriere besteht aus einer präzisen Lipidmatrix: Ceramide, Cholesterin und freie Fettsäuren im Verhältnis 3:1:1.", 
+        practical: "Vermeide aggressive Tenside (z.B. Sodium Lauryl Sulfate) und zu heißes Wasser bei der Gesichtswäsche. Nutze milde, pH-hautneutrale Cleanser und trage direkt danach eine ceramidhaltige Feuchtigkeitscreme auf.", 
+        medicalInfo: "Das 'Mörtel-Ziegel-Modell' beschreibt Korneozyten (Ziegel), eingebettet in lamellare Lipiddoppelschichten (Mörtel). Störungen dieser Matrix durch ungeeignete Kosmetika aktivieren Entzündungskaskaden über IL-1-alpha." 
+      },
+      { 
+        id: 17, 
+        module: "Modul 3: Dermatologische Wissenschaft & Mikrobiom", 
+        title: "Dermatologischer Wirkstoff-Guide: Retinoide & Tretinoin", 
+        text: "Retinoide (Vitamin-A-Derivate) stellen den wissenschaftlich am besten erforschten Wirkstoff gegen Hautalterung und Akne dar. Sie beschleunigen die Zellerneuerung in der Epidermis und regenerieren kollagene Fasern in der tiefen Dermis.", 
+        practical: "Anwendungs-Protokoll: Starte mit milde Retinoiden (z.B. Retinal 0.05%) 2-mal pro Woche abends. Steigere die Frequenz langsam. Nutze die 'Sandwich-Methode' (Feuchtigkeitscreme – Retinoid – Feuchtigkeitscreme), um Hautirritationen zu minimieren.", 
+        medicalInfo: "Tretinoin bindet direkt an nukleäre Retinsäure-Rezeptoren (RAR) und Retinoid-X-Rezeptoren (RXR). Dies verändert die Genexpression, erhöht die epidermale Mitoserate und hemmt kollagenabbauende Matrix-Metalloproteinasen (MMP-1)." 
+      },
+      { 
+        id: 18, 
+        module: "Modul 3: Dermatologische Wissenschaft & Mikrobiom", 
+        title: "Kollagenogenese & Matrix-Remodellierung: Vitamin C & Peptide", 
+        text: "Kollagen Typ I verleiht der Dermis Zugfestigkeit und Dichte. Für die körpereigene Synthese von Kollagen ist Vitamin C (L-Ascorbinsäure) als essenzieller Kofaktor unerlässlich. Signalpeptide vermitteln den Zellen das Signal, neue Strukturproteine aufzubauen.", 
+        practical: "Trage jeden Morgen nach der Reinigung ein Serum mit 10-15% reiner L-Ascorbinsäure (oder stabilen Derivaten wie THD Ascorbate) auf. Kombiniere abends Produkte mit Kupfer-Peptiden (GHK-Cu).", 
+        medicalInfo: "L-Ascorbinsäure ist Kofaktor für die Enzyme Prolyl-4-Hydroxylase und Lysyl-Hydroxylase. Ohne Vitamin C können Kollagen-Tripelhelizes nicht korrekt gefaltet werden, was zu Instabilität des Bindegewebes führt." 
+      },
+      { 
+        id: 19, 
+        module: "Modul 3: Dermatologische Wissenschaft & Mikrobiom", 
+        title: "UV-Strahlung, Photoaging & Breitband-Photoprotektion", 
+        text: "Bis zu 80% der sichtbaren Hautalterung gehen auf das Konto von UV-Strahlung (Photoaging). UVA-Strahlen dringen tief in die Dermis ein, erzeugen freie Radikale und zerstören das Kollagen- und Elastinnetzwerk dauerhaft.", 
+        practical: "Trage 365 Tage im Jahr jeden Morgen großzügig einen Breitband-Sonnenschutz (UVA + UVB) mit LSF 50+ auf. Achte darauf, moderne organische Filter (z.B. Tinosorb S/M, Uvinul A Plus) zu verwenden.", 
+        medicalInfo: "UVA-Strahlung erzeugt reaktive Sauerstoffspezies (ROS), welche die Transkriptionsfaktoren AP-1 und NF-kB aktivieren. Dies führt zur massiven Hochregulation von MMP-1, MMP-8 und MMP-13, die gesunden Kollagenstränge zerschneiden." 
+      },
+      { 
+        id: 20, 
+        module: "Modul 3: Dermatologische Wissenschaft & Mikrobiom", 
+        title: "Sebum-Mechanik, Akne-Pathophysiologie & Salicylsäure", 
+        text: "Akne entsteht durch eine Triade aus übermäßiger Sebumproduktion (Talg), Hyperkeratose (Verhornungsstörung im Follikel) und Besiedlung mit Cutibacterium acnes. Salicylsäure (BHA) ist öllöslich und kann tief in die Pore eindringen, um Verstopfungen zu lösen.", 
+        practical: "Integriere ein 2%iges Salicylsäure-Exfoliant 2-3 Mal pro Woche in deine Abendroutine. Trage es auf die gereinigte, trockene Haut auf und lass es 10 Minuten einwirken, bevor du Feuchtigkeitscreme aufträgst.", 
+        medicalInfo: "Salicylsäure spaltet interzelluläre Desmosomen in den Talgdrüsenfollikeln und wirkt keratolytisch. Zudem besitzt sie komedolytische und antientzündliche Eigenschaften durch Hemmung der Prostaglandinsynthese." 
+      },
+      { 
+        id: 21, 
+        module: "Modul 3: Dermatologische Wissenschaft & Mikrobiom", 
+        title: "Das kutane Mikrobiom: Mikrobielle Diversität & Hautgesundheit", 
+        text: "Auf unserer Haut leben Billionen Nützliche Bakterien, Pilze und Viren, die das kutane Mikrobiom bilden. Ein ausbalanciertes Mikrobiom produziert antimikrobielle Peptide und schützt vor Entzündungen, Rötungen und Rosazea.", 
+        practical: "Vermeide Überreinigung des Gesichts (maximal 2-mal täglich reinigen). Verzichte auf harsche alkoholhaltige Gesichtswässer und antibakterielle Seifen, da diese die Schutzschicht zerstören.", 
+        medicalInfo: "Staphylococcus epidermidis produziert Fermentationsprodukte wie Bernsteinsäure, welche das Wachstum von Cutibacterium acnes hemmen. Ein niedriger Haut-pH-Wert (4.5 - 5.5) ist essenziell für die Enzymaktivität des Mikrobioms." 
+      },
+      { 
+        id: 22, 
+        module: "Modul 3: Dermatologische Wissenschaft & Mikrobiom", 
+        title: "Systemische Dermatologie: Glykation (AGEs) & Hautelastizität", 
+        text: "Advanced Glycation Endproducts (AGEs) entstehen, wenn sich überschüssige Zuckermoleküle im Blut unkontrolliert an Kollagen- und Elastinfasern binden. Dies führt zur Versteifung des Bindegewebes, Faltenbildung und Verlust der Hautelastizität.", 
+        practical: "Reduziere den Konsum von einfachem Zucker und vermindere das scharfe Anbraten/Frittieren von Speisen bei sehr hohen Temperaturen. Reiche Mahlzeiten mit Antioxidantien wie Alpha-Liponsäure an.", 
+        medicalInfo: "Die Maillard-Reaktion führt zur Quervernetzung (Cross-linking) von Kollagenmolekülen. Glykiertes Kollagen verliert seine Flexibilität, widersteht dem natürlichen Abbau durch kollagene Enzyme und stört die Geweberegeneration." 
+      },
+
+      // MODUL 4: Hypertrophie, V-Taper & Proportionalität
+      { 
+        id: 23, 
+        module: "Modul 4: Hypertrophie, V-Taper & Proportionalität", 
+        title: "Die Mathematik der ästhetischen Proportionen: Golden Ratio", 
+        text: "Die visuelle Attraktivität des männlichen Oberkörpers basiert maßgeblich auf geometrischen Proportionen. Der sogenannte 'Adonis-Index' beschreibt das ideale Schulter-zu-Taillen-Verhältnis von etwa 1,618 (Der Goldene Schnitt). Ein ausgeprägter V-Taper lässt die Taille schmaler und die Statur imposanter wirken.", 
+        practical: "Messung: Messe deinen Schulterumfang an der breitesten Stelle des Deltoideus und deinen Taillenumfang auf Höhe des Bauchnabels. Arbeite gezielt daran, das Verhältnis durch Schulteraufbau und Taillenreduktion anzunähern.", 
+        medicalInfo: "Evolutionstheoretisch signalisiert ein ausgeprägtes Schulter-zu-Taillen-Verhältnis hohe circulating Androgenspiegel (Testosteron) und körperliche Leistungsfähigkeit, was neurobiologisch positive Assoziationen auslöst." 
+      },
+      { 
+        id: 24, 
+        module: "Modul 4: Hypertrophie, V-Taper & Proportionalität", 
+        title: "Deltoideus-Isolation: Aufbau der lateralen Schulterbreite", 
+        text: "Der seitliche Muskelkopf des Schultermuskels (Pars acromialis) ist die wichtigste Muskelgruppe zur Verbreiterung der Oberkörpersilhouette in der Frontalansicht. Standard-Drückübungen treffen überwiegend den vorderen Deltamuskel, weshalb gezielte Isolation unerlässlich ist.", 
+        practical: "Trainings-Protokoll: Führe Seitheben am Kabelzug oder mit Kurzhanteln 2-3 Mal pro Woche mit insgesamt 12-16 Sätzen durch. Lehne den Oberkörper leicht nach vorne und führe die Bewegung im Winkel der Scapula (30 Grad nach vorne) aus.", 
+        medicalInfo: "Maximale EMM-Aktivierung des Pars acromialis erfordert kontinuierliche Spannung über die gesamte Bewegungslänge. Der Kabelzug bietet im Vergleich zu Kurzhanteln eine gleichmäßigere Widerstandskurve in der gedehnten Position." 
+      },
+      { 
+        id: 25, 
+        module: "Modul 4: Hypertrophie, V-Taper & Proportionalität", 
+        title: "Musculus Latissimus Dorsi & Obere Rückenarchitektur", 
+        text: "Der breite Rückenmuskel (Latissimus dorsi) erzeugt die seitliche Ausladung des Rückens unterhalb der Achseln. Ein gut entwickelter Latissimus verleiht dem Oberkörper Tiefe und Breite und verstärkt den V-Taper-Effekt dramatisch.", 
+        practical: "Integriere Klimmzüge im Obergriff sowie Latzug-Varianten mit fokussiertem Stretch an der obersten Position in dein Training. Vermeide Schwungholen und ziehe das Gewicht aus den Ellenbogen nach unten.", 
+        medicalInfo: "Der Latissimus dorsi besitzt iliakale, kostale und thorakale Faserverläufe. Eine vollständige Adduktion und Extension des Humerus unter mechanischer Spannung stimuliert alle Faseranteile optimal." 
+      },
+      { 
+        id: 26, 
+        module: "Modul 4: Hypertrophie, V-Taper & Proportionalität", 
+        title: "Taillen-Minimierung: Kontrolle des Musculus Transversus Abdominis", 
+        text: "Eine schmale Taille entsteht nicht nur durch niedrigen Körperfettanteil, sondern auch durch die Spannkraft des tiefen Bauchmuskels (M. transversus abdominis). Dieser Muskel funktioniert wie ein biologisches Korsett und hält die Innenseitorgane fest im Bauchraum.", 
+        practical: "Stomach Vacuum Routine: Führe jeden Morgen auf nüchternen Magen 4-5 Sätze 'Stomach Vacuums' durch. Atme vollständig aus, ziehe den Bauchnabel so tief wie möglich nach innen-oben in den Brustkorb und halte die Spannung für 15-20 Sekunden.", 
+        medicalInfo: "Der M. transversus abdominis verläuft transversal um die Bauchhöhle. Seine Isometrische Kräftigung erhöht den Ruhetonus der Bauchwand und verhindert eine viszeral bedingte Bauchwölbung ('Distension')." 
+      },
+      { 
+        id: 27, 
+        module: "Modul 4: Hypertrophie, V-Taper & Proportionalität", 
+        title: "Körperfettreduktion & Lokale Fettverteilung", 
+        text: "Um die knöchernen Strukturen des Gesichts und die Muskeldefinition der Bauch- und Rückenpartie freizulegen, ist ein niedriger Körperfettanteil (ca. 10-12% bei Männern) zwingend erforderlich. Fettabbau erfolgt immer systemisch und kann nicht lokal erzwungen werden.", 
+        practical: "Setze auf ein moderates Kaloriendefizit von 300-500 kcal pro Tag. Achte auf eine hohe Proteinzufuhr (2,0 - 2,2 g pro kg Körpergewicht), um während der Diätphase reine Muskelmasse vollständig zu erhalten.", 
+        medicalInfo: "Die Lipolyse in Adipozyten wird durch enzymatische Spaltung von Triglyceriden via HSL (Hormonsensitive Lipase) eingeleitet. Die Aktivierung erfolgt über Katecholamine an beta-1 und beta-2 Adrenorezeptoren." 
+      },
+      { 
+        id: 28, 
+        module: "Modul 4: Hypertrophie, V-Taper & Proportionalität", 
+        title: "Nacken- & Trapezius-Entwicklung für korrekte Rahmung", 
+        text: "Ein kräftiger Nacken (M. sternocleidomastoideus) gibt dem Gesicht von der Seite und Front einen stabilen Rahmen. Allerdings sollte der obere Trapezius nicht übermäßig hypertrophiert werden, da er sonst die optische Schulterbreite 'schlucken' kann.", 
+        practical: "Trainiere den Nacken gezielt mit Nackenbeugen (Neck Curls) mit einer leichten Hantelscheibe auf der Stirn (3 Sätze à 15-20 Wdh). Vermeide extremes Achselzucken (Shrugs) mit immensen Gewichten.", 
+        medicalInfo: "Der M. sternocleidomastoideus stabilisiert die Halswirbelsäule gegen Flexions- und Rotationskräfte. Eine Kräftigung schützt vor Beschwerden durch Laptops und Smartphones ('Tech Neck')." 
+      },
+      { 
+        id: 29, 
+        module: "Modul 4: Hypertrophie, V-Taper & Proportionalität", 
+        title: "Haltungskorrektur: Beseitigung von Upper Crossed Syndrome", 
+        text: "Das Upper Crossed Syndrome ist eine weit verbreitete Fehlhaltung, charakterisiert durch nach vorne gezogene Schultern (Protraktion), Rundrücken (Kyphose) und nach vorne geschobenen Kopf. Diese Haltung ruiniert die Ästhetik des Oberkörpers vollkommen.", 
+        practical: "Korrektur-Routine: Dehne täglich die Pectoralis-Muskulatur an einem Türrahmen. Trainiere gezielt die hintere Schulter (Face Pulls) und den M. Rhomboideus mit fokussierter Scapula-Retraktion.", 
+        medicalInfo: "Biopathologisch liegt ein Ungleichgewicht vor zwischen verkürzten, hypertonen Muskeln (M. pectoralis major/minor, M. trapezius pars descendens) und geschwächten, inhibierten Muskeln (M. rhomboideus, M. trapezius pars ascendens)." 
+      },
+
+      // MODUL 5: Ernährungsbiochemie & Endokrinologie
+      { 
+        id: 30, 
+        module: "Modul 5: Ernährungsbiochemie & Endokrinologie", 
+        title: "Endokrine Achse: Hypothalamus-Hypophysen-Testis-Achse (HPTA)", 
+        text: "Die HPTA ist das primäre Hormon-Kontrollzentrum für die Produktion von Androgenen. Der Hypothalamus schüttet GnRH aus, woraufhin die Hypophyse Luteinisierendes Hormon (LH) und Follikelstimulierendes Hormon (FSH) freisetzt, welche in den Hoden die Testosteron- und Spermiensynthese anregen.", 
+        practical: "Vermeide chronischen Schlafmangel und extreme Stresszustände, da Cortisol die GnRH-Ausschüttung direkt unterdrückt. Sichere dir 7-9 Stunden qualitativen Schlaf pro Nacht.", 
+        medicalInfo: "LH bindet an G-Protein-gekoppelte LHR-Rezeptoren auf den Leydig-Zellen. Dies aktiviert die Adenylatcyclase, steigert cAMP und schaltet das StAR-Protein (Steroidogenic Acute Regulatory Protein) hoch, welches Cholesterin in die Mitochondrien transportiert." 
+      },
+      { 
+        id: 31, 
+        module: "Modul 5: Ernährungsbiochemie & Endokrinologie", 
+        title: "Steroidgenese: Von Cholesterin zu Testosteron & DHT", 
+        text: "Alle Steroidhormone basieren chemisch auf dem Cholesterinmolekül. Über mehrere enzymatische Zwischenschritte (Pregnenolon, Progesteron, DHEA, Androstendion) entsteht Testosteron. Das Enzym 5-alpha-Reduktase wandelt Testosteron schließlich in das hochpotente Dihydrotestosteron (DHT) um.", 
+        practical: "Nimm ausreichend gesunde Fette (ca. 1.0 g pro kg Körpergewicht) aus vollwertigen Quellen wie Eiern, Avocados und Olivenöl zu dir, um die Grundbausteine für die Hormonsynthese bereitzustellen.", 
+        medicalInfo: "DHT besitzt eine etwa 3- bis 5-mal höhere Affinität zum Androgenrezeptor als Testosteron und dissoziiert deutlich langsamer vom Rezeptor. Es steuert sekundäre männliche Geschlechtsmerkmale und die Dichte der Körperbehaarung." 
+      },
+      { 
+        id: 32, 
+        module: "Modul 5: Ernährungsbiochemie & Endokrinologie", 
+        title: "Aromatase-Hemmung & Östrogen-Balance", 
+        text: "Das Enzym Aromatase wandelt einen Teil des freien Testosterons im Fettgewebe und der Leber in Östradiol (E2) um. Ein zu hoher Östrogenspiegel führt zu vermehrtem Fettansatz an Brust und Hüfte, Stimmungsschwankungen sowie starker Wasserretention im Gesicht.", 
+        practical: "Integriere regelmäßig kreuzblütiges Gemüse (Brokkoli, Blumenkohl, Rosenkohl) in deine Ernährung. Das darin enthaltene Indol-3-Carbinol/DIM unterstützt den gesunden Östrogenabbau.", 
+        medicalInfo: "Diindolylmethan (DIM) moduliert die Cytochrom P450-Enzyme so, dass die Konvertierung von Östrogen bevorzugt über den 2-Hydroxyöstron-Pfad (der 'gute' Östrogenmetabolit) stattfindet." 
+      },
+      { 
+        id: 33, 
+        module: "Modul 5: Ernährungsbiochemie & Endokrinologie", 
+        title: "SHBG-Modulation: Freies vs. Gebundenes Testosteron", text: "Sex Hormone-Binding Globulin (SHBG) ist ein Transportprotein im Blut, das Testosteron fest an sich bindet. Nur etwa 1-2% des gesamten Testosterons liegen ungebunden ('frei') vor und können biologisch aktiv in die Zellen eindringen, um an Rezeptoren zu binden.", 
+        practical: "Supplementiere bei Bedarf gezielt Bor (6-10 mg täglich) sowie Zink und Magnesium, um exzessive SHBG-Bindungen zu optimieren und den Anteil an freiem Testosteron zu maximieren.", 
+        medicalInfo: "Bor reduziert die Serum-Konzentration von SHBG signifikant innerhalb von 7 Tagen und führt zu einem messbaren Anstieg des freien Testosterons sowie einer leichten Senkung von Entzündungsmarkern (hs-CRP)." 
+      },
+      { 
+        id: 34, 
+        module: "Modul 5: Ernährungsbiochemie & Endokrinologie", 
+        title: "Mikronährstoff-Synergie: Zink, Magnesium, Vitamin D3 & K2", 
+        text: "Mikronährstoffmängel blockieren die hormonelle Kaskade massiv. Vitamin D3 wirkt im Körper wie ein Steroidhormon und reguliert Hunderte von Genprozessen. Zink ist ein unverzichtbarer Kofaktor für die Testosteronsynthese und verhindert übermäßige Aromatase-Aktivität.", 
+        practical: "Erstelle ein Mikronährstoff-Protokoll: Supplementiere täglich 4000-5000 I.E. Vitamin D3 zusammen mit 200 mcg Vitamin K2 (MK-7) sowie 15-25 mg Zink-Bisglycinat und 300-400 mg Magnesium-Citrat/Glycinat.", 
+        medicalInfo: "Vitamin-D-Rezeptoren (VDR) sind direkt in den Leydig-Zellen der Hoden vorhanden. Ein adäquater Serum-25(OH)D3-Spiegel (>50 ng/ml) korreliert klinisch direkt mit erhöhten LH- und Testosteronspiegeln." 
+      },
+      { 
+        id: 35, 
+        module: "Modul 5: Ernährungsbiochemie & Endokrinologie", 
+        title: "Insulinsensitivität & Nährstoff-Partitionierung", 
+        text: "Insulin ist das stärkste speichernde Hormon des Körpers. Eine hohe Insulinsensitivität sorgt dafür, dass aufgenommene Kohlenhydrate bevorzugt in den Muskelzellen als Glykogen gespeichert werden ('Nährstoff-Partitionierung'), anstatt ins Fettgewebe zu fließen.", 
+        practical: "Mache nach Kohlenhydratreichen Mahlzeiten einen 10-15-minütigen zügigen Spaziergang. Nutze vor dem Training komplexe Kohlenhydrate und meide ständige Blutzuckerspitzen durch Dauer-Snacking.", 
+        medicalInfo: "Muskelkontraktion aktiviert die AMP-aktivierte Proteinkinase (AMPK), was die Translokation von GLUT4-Glukosetransportern an die Zellmembran unabhängig von Insulin stimuliert." 
+      },
+      { 
+        id: 36, 
+        module: "Modul 5: Ernährungsbiochemie & Endokrinologie", 
+        title: "Schilddrüsenhormone (T3/T4) & Grundumsatz-Optimierung", 
+        text: "Die Schilddrüse steuert die Stoffwechselrate aller Zellen im Körper. Das inaktive Thyroxin (T4) muss in der Leber und den Nieren in das aktive Trijodthyronin (T3) umgewandelt werden, welches die mitochondriale Sauerstoffaufnahme und Fettverbrennung direkt reguliert.", 
+        practical: "Achte in Diätphasen darauf, das Kaloriendefizit nicht zu lange extrem hoch zu halten. Baue geplante Refeed-Tage mit höherer Kohlenhydratzufuhr ein, um die T4-zu-T3-Konvertierung aufrechtzuerhalten.", 
+        medicalInfo: "Die Umwandlung von T4 zu T3 erfolgt durch Selen-abhängige Dejodinase-Enzyme (DIO1/DIO2). Ein Mangel an Selen, Jod oder extrem niedrige Glykogenspeicher drosseln die Dejodinase-Aktivität deutlich." 
+      },
+
+      // MODUL 6: Grooming, Haargesundheit & Visuelle Präsentation
+      { 
+        id: 37, 
+        module: "Modul 6: Grooming, Haargesundheit & Visuelle Präsentation", 
+        title: "Androgenetische Alopezie (AGA): DHT & Follikel-Miniaturisierung", 
+        text: "Erblicher Haarausfall betrifft einen Großteil der Männer. Ursache ist eine genetische Überempfindlichkeit der Haarfollikel am Oberkopf gegenüber Dihydrotestosteron (DHT). DHT verkürzt die Wachstumsphase (Anagenphase) der Haare und verengt die Blutgefäße, bis der Follikel atrophiert.", 
+        practical: "Überprüfe deinen Haaransatz und die Scheitelregion regelmäßig bei gutem Licht. Frühzeitiges Einschreiten ist der Schlüssel, da bereits abgestorbene Follikel nicht mehr reaktiviert werden können.", 
+        medicalInfo: "DHT bindet an Androgenrezeptoren in den dermalen Papillenzellen des Skalps und steigert die Expression von TGF-beta-1 und IL-6. Dies führt zu kutaner Fibrose und fortschreitender Follikel-Miniaturisierung." 
+      },
+      { 
+        id: 38, 
+        module: "Modul 6: Grooming, Haargesundheit & Visuelle Präsentation", 
+        title: "Pharmakologie der Haarerhaltung: Finasterid & Minoxidil", 
+        text: "Die medizinische Behandlung von Haarausfall ruht auf zwei Säulen: Finasterid hemmt das Enzym 5-alpha-Reduktase und senkt die DHT-Spiegel auf der Kopfhaut dramatisch. Minoxidil verbessert als Vasodilatator die Nährstoff- und Blutversorgung der Follikel.", 
+        practical: "Konsultiere einen Dermatologen für eine Trichoskopie. Bei Diagnose kann topisches oder orales Finasterid in Kombination mit Minoxidil eingesetzt werden. Konsistenz bei der täglichen Anwendung ist Pflicht.", 
+        medicalInfo: "Finasterid hemmt selektiv die Typ-II-Isoform der 5-alpha-Reduktase und senkt die Serum-DHT-Spiegel um ca. 70%. Minoxidil öffnet ATP-sensitive Kaliumkanäle, was zur Vasodilatation der kapillaren Gefäße führt." 
+      },
+      { 
+        id: 39, 
+        module: "Modul 6: Grooming, Haargesundheit & Visuelle Präsentation", 
+        title: "Microneedling & Kopfhaut-Durchblutung (Scalp Tension)", 
+        text: "Spannungen in der Kopfhaut (Galea aponeurotica) verringern die Sauerstoffversorgung der Follikel. Microneedling (Dermarolling/Dermapen) erzeugt kontrollierte Mikroverletzungen, welche die Wundheilung anregen und Wachstumsfaktoren freisetzen.", 
+        practical: "Anwendungs-Routine: Nutze 1-mal pro Woche einen Dermapen oder Dermaroller mit 1,0 mm bis 1,5 mm Nadellänge auf der gereinigten Kopfhaut. Vermeide die direkte Anwendung von Minoxidil für 24 Stunden nach dem Needling.", 
+        medicalInfo: "Microneedling aktiviert die Wnt/beta-Catenin-Signalkaskade, steigert die Expression von VEGF (Vascular Endothelial Growth Factor) und Platlet-Derived Growth Factor (PDGF) in den dermalen Papillen." 
+      },
+      { 
+        id: 40, 
+        module: "Modul 6: Grooming, Haargesundheit & Visuelle Präsentation", 
+        title: "Bartwuchs-Biochemie: Androgenrezeptoren im Gesichtsbereich", 
+        text: "Im Gegensatz zur Kopfhaut stimuliert DHT das Wachstum der Gesichtsbehaarung. Die Dichte und Empfindlichkeit der Androgenrezeptoren im Unterkieferbereich entscheidet darüber, wie dicht und stark der Bart wächst.", 
+        practical: "Lass den Bart mindestens 8-12 Wochen ungestört wachsen, bevor du Linien trimmst. Nutze Bartöl zur Pflege der Haut darunter. Bei lückenhaftem Wuchs kann topisches Minoxidil 5% auf der Wange eingesetzt werden.", 
+        medicalInfo: "Gesichtshaarfollikel besitzen eine hohe Dichte an 5-alpha-Reduktase Typ I. Androgene wandeln dünne Vellus-Haare im Gesicht schrittweise in dicke, pigmentierte Terminalhaare um." 
+      },
+      { 
+        id: 41, 
+        module: "Modul 6: Grooming, Haargesundheit & Visuelle Präsentation", 
+        title: "Zahnästhetik: Ausrichtung, Remineralisierung & Dental-Glow", 
+        text: "Ein helles, gerades Lächeln signalisiert Gesundheit und Symmetrie. Neben der Kieferorthopädischen Ausrichtung ist die Remineralisierung des Zahnschmelzes entscheidend, um Säureerosionen und Verfärbungen vorzubeugen.", 
+        practical: "Nutze täglich Zahnseide oder Interdentalbürsten. Verwende Zahncremes mit biomimetischem Hydroxylapatit (HAP) oder Fluorid, um den Zahnschmelz aufzubauen. Für Bleaching professionelle Schienen nutzen.", 
+        medicalInfo: "Micro-Hydroxylapatit lagert sich direkt an microscopic Schmelzdefekte an, bildet eine Schutzschicht gegen Säuren und reduziert klinisch nachweisbar die Zahnempfindlichkeit." 
+      },
+      { 
+        id: 42, 
+        module: "Modul 6: Grooming, Haargesundheit & Visuelle Präsentation", 
+        title: "Augenpartie-Optimierung: Periorbitale Hygiene & Dark Circles", 
+        text: "Dunkle Augenringe und Augenringe lassen das Gesicht müde wirken. Sie entstehen durch extrem dünne Haut über Blutgefäßen, Hyperpigmentierung oder strukturelle Hohlräume unterhalb der Augenhöhle (Tear Trough).", 
+        practical: "Kühle die Augenpartie morgens mit einem eiskalten Löffel oder Eiswürfel für 2 Minuten. Trage morgens eine Creme mit Koffein und Niacinamid auf, um die Durchblutung zu fördern.", 
+        medicalInfo: "Topisches Koffein wirkt lokal als Vasokonstriktor und reduziert das Austreten von Flüssigkeit aus den Kapillaren. Vitamin K1/K-Oxid beschleunigt den Abbau von extravasiertem Hämosiderin." 
+      },
+      { 
+        id: 43, 
+        module: "Modul 6: Grooming, Haargesundheit & Visuelle Präsentation", 
+        title: "Stil-Physiologie, Farbkontraste & Rahmung der Gesichtsform", 
+        text: "Kleidung, Ausschnittformen und Brillen können kraniofaziale Proportionen optisch ausgleichen. Ziel ist es, das Gesicht möglichst oval und symmetrisch wirken zu lassen und die eigenen Farbkontraste (Haut/Haare/Augen) zu betonen.", 
+        practical: "Bestimme deinen Kontrasttyp: Bei hohem Kontrast (z.B. dunkle Haare, helle Haut) wähle kontrastreiche Kleidung (Schwarz/Weiß). Wähle eckige Brillenrahmen bei runden Gesichtern und weichere Formen bei sehr eckigen Gesichtern.", 
+        medicalInfo: "Die Wahrnehmung von Gesichtsformen durch den Betrachter basiert auf visuellen Kanten-Kontrasten im Cortex (Area V1). Gezielte Rahmung verändert die optische Brennpunkt-Verteilung." 
+      },
+      { 
+        id: 44, 
+        module: "Modul 6: Grooming, Haargesundheit & Visuelle Präsentation", 
+        title: "Duft-Molekularbiologie: Pheromone, Sillage & Haut-pH", 
+        text: "Geruchssinn und olfaktorische Reize verlaufen direkt ins limbisches System des Gehirns, wo Emotionen verarbeitet werden. Hochwertige Düfte interagieren mit den individuellen Lipiden der Haut und erzeugen eine einzigartige Sillage.", 
+        practical: "Trage Düfte stets auf gut mit unparfümierter Feuchtigkeitscreme versorgte Pulspunkte (Hals, Handgelenke) auf. Reibe die Handgelenke niemals aneinander, da dies die Duftmoleküle zerstört.", 
+        medicalInfo: "Synthetische Duftmoleküle wie Iso E Super oder Ambroxan binden an Rezeptoren der Riechschleimhaut und erzeugen durch ihre niedrige Flüchtigkeit eine langanhaltende Projektion." 
+      },
+
+      // MODUL 7: Schlafarchitektur, Lichtbiologie & Zirkadiane Regeneration
+      { 
+        id: 45, 
+        module: "Modul 7: Schlafarchitektur, Lichtbiologie & Zirkadiane Regeneration", 
+        title: "Zirkadiane Biologie & Nucleus Suprachiasmaticus (SCN)", 
+        text: "Der Nucleus Suprachiasmaticus (SCN) im Hypothalamus ist die zentrale Hauptuhr des Körpers. Er synchronisiert sämtliche Zell- und Organuhren über Lichtsignale, die auf spezialisierte Rezeptoren in der Netzhaut treffen.", 
+        practical: "Morgen-Protokoll: Gehe innerhalb von 30 Minuten nach dem Aufstehen für 10-20 Minuten an die frische Luft ohne Sonnenbrille, um helles natürliches Tageslicht auf die Augen treffen zu lassen.", 
+        medicalInfo: "Melanopsin-haltige intrinsisch photosensitive ganglionäre Netzhautzellen (ipRGCs) reagieren speziell auf blaues Licht (~480 nm) und senden Signale über den retinohypothalamischen Trakt direkt zum SCN." 
+      },
+      { 
+        id: 46, 
+        module: "Modul 7: Schlafarchitektur, Lichtbiologie & Zirkadiane Regeneration", 
+        title: "Blaulicht-Toxizität, Melatonin-Unterdrückung & Schlafqualität", 
+        text: "Künstliches blaues Licht von Smartphones, Monitoren und LED-Lampen am Abend signalisiert dem Gehirn fälschlicherweise Mittagssonne. Dies blockiert die Ausschüttung des Schlafhormons Melatonin in der Zirbeldrüse vollkommen.", 
+        practical: "Abend-Protokoll: Dimme 2 Stunden vor dem Schlafen alle Lichter ab. Nutze Blaulichtfilter-Brillen (Amber/Red Lenses) oder schalte Bildschirme konsequent in den Nachtmodus.", 
+        medicalInfo: "Melatonin wird aus Serotonin in der Epiphyse synthetisiert. Es ist nicht nur Schlaf-Signalstoff, sondern auch das potenteste intrazelluläre Antioxidans zum Schutz der Mitochondrien vor oxidativem Stress." 
+      },
+      { 
+        id: 47, 
+        module: "Modul 7: Schlafarchitektur, Lichtbiologie & Zirkadiane Regeneration", 
+        title: "Schlafphasen-Architektur: Tiefschlaf (SWS) & GH-Ausschüttung", 
+        text: "Der Schlaf gliedert sich in NREM- und REM-Phasen. Der Slow-Wave Sleep (Tiefschlaf) findet überwiegend in der ersten Nachthälfte statt und ist die Phase der physischen Regeneration, Gewebereparatur und Hormonausschüttung.", 
+        practical: "Halte dein Schlafzimmer dunkel, absolut ruhig und kühl (16-18 °C). Vermeide Alkohol und große Mahlzeiten 3 Stunden vor dem Schlafen, da diese den Tiefschlaf massiv unterdrücken.", 
+        medicalInfo: "Der Großteil des Somatotropen Hormons (HGH/Growth Hormone) wird pulsativ während der ersten Tiefschlafphase aus der Adenohypophyse freigesetzt und stimuliert die zelluläre Proteinsynthese." 
+      },
+      { 
+        id: 48, 
+        module: "Modul 7: Schlafarchitektur, Lichtbiologie & Zirkadiane Regeneration", 
+        title: "Glymphatisches System: Gehirnwäsche im Schlaf", 
+        text: "Das glymphatische System ist das Müllentsorgungssystem des Gehirns. Während des tiefen Schlafs Schrumpfen die Gliazellen um etwa 60%, sodass Gehirnrückenmarksflüssigkeit Stoffwechselabfälle und Proteine spülen kann.", 
+        practical: "Achte auf eine konsistente Schlafenszeit (max. 30 Minuten Abweichung auch am Wochenende), um dem Gehirn vollständige glymphatische Reinigungszyklen zu ermöglichen.", 
+        medicalInfo: "Der Astrozyten-vermittelte Liquor-Einstrom über Aquaporin-4 (AQP4)-Wasserkanäle spült neurotoxische Abfallprodukte wie Beta-Amyloid und Tau-Proteine aus dem Interstitium des Gehirns." 
+      },
+      { 
+        id: 49, 
+        module: "Modul 7: Schlafarchitektur, Lichtbiologie & Zirkadiane Regeneration", 
+        title: "Mitochondriale Gesundheit & Adenosin-Akkumulation", 
+        text: "Während der Wachphase verbrauchen Neuronen ATP, wodurch sich schrittweise Adenosin im Gehirn anreichert und 'Schlafdruck' erzeugt. Koffein blockiert die Adenosinrezeptoren, beseitigt jedoch nicht das aufgestaute Adenosin.", 
+        practical: "Warte morgens 90-120 Minuten nach dem Aufstehen, bevor du deinen ersten Kaffee trinkst, damit das restliche morgendliche Adenosin natürlich abgebaut wird. Kein Koffein mehr nach 14:00 Uhr.", 
+        medicalInfo: "Koffein wirkt als kompetitiver Antagonist an A1- und A2A-Adenosinrezeptoren. Ein später Konsum verhindert das Erreichen der tiefen Slow-Wave-Schlafphasen, selbst wenn man problemlos einschläft." 
+      },
+      { 
+        id: 50, 
+        module: "Modul 7: Schlafarchitektur, Lichtbiologie & Zirkadiane Regeneration", 
+        title: "Temperaturextreme: Kälteexposition & Braunfett-Aktivierung", 
+        text: "Kälteanwendungen aktivieren das braune Fettgewebe (BAT), welches im Gegensatz zu weißem Fettgewebe extrem dicht mit Mitochondrien gepackt ist. Braunes Fett verbrennt Kalorien rein zur Wärmeerzeugung (Thermogenese).", 
+        practical: "Kalt-Dusch-Protokoll: Beende deine tägliche Dusche mit 60-120 Sekunden fokussiertem kalten Wasser auf Nacken, Brust und Rücken. Atme dabei ruhig und kontrolliert durch die Nase.", 
+        medicalInfo: "Kälte induziert eine massive Ausschüttung von Norepinephrin. Dies aktiviert beta-3-adrenologe Rezeptoren im braunen Fett, was zur Hochregulation von Uncoupling Protein 1 (UCP-1) in den Mitochondrien führt." 
+      },
+      { 
+        id: 51, 
+        module: "Modul 7: Schlafarchitektur, Lichtbiologie & Zirkadiane Regeneration", 
+        title: "Sauna, Hitzeschockproteine (HSP) & Gefäßelastizität", 
+        text: "Regelmäßiges Saunieren erzeugt eine milde Hyperthermie, welche die Gefäße erweitert, die Durchblutung steigert und die Synthese von Hitzeschockproteinen (HSPs) anregt, die beschädigte Zellproteine reparieren.", 
+        practical: "Sauna-Protokoll: Gehe 2-3 Mal pro Woche für 15-20 Minuten bei 80-90 °C in die finnische Sauna. Kühle dich danach gründlich ab und trinke ausreichend Elektrolytwasser.", 
+        medicalInfo: "Hitzestress aktiviert den Transkriptionsfaktor HSF-1, welcher Hitzeschockproteine (z.B. HSP70) hochreguliert. HSPs fungieren als molekulare Chaperons und verhindern Proteinfehlhaltungen und Aggregationen." 
+      },
+      { 
+        id: 52, 
+        module: "Modul 7: Schlafarchitektur, Lichtbiologie & Zirkadiane Regeneration", 
+        title: "Zusammenfassung: Das integrierte 24-Stunden-Protokoll", 
+        text: "Die maximale Transformation erfordert Synergie. Von der kraniofazialen Zungenruhelage am Morgen über das zielgerichtete V-Taper-Training, der wissenschaftlichen Hautpflege, der biochemischen Hormonoptimierung bis hin zur zirkadianen Schlafhygiene am Abend.", 
+        practical: "Integriere die Gewohnheiten Schritt für Schritt. Wähle pro Woche nur 2 neue Routinen aus und verankere sie fest, bevor du das Protokoll erweiterst. Konsistenz schlägt Intensität.", 
+        medicalInfo: "Langfristige physiologische Adaptation beruht auf kontinuierlicher Genexpressions-Modulation. Die synchrone Ausrichtung von biologischen Rhythmen, Hormonspiegeln und Mechanotransduktion maximiert die zelluläre Plastizität." 
+      }
+    ];
+
+    // APP STATE
+    let currentSlideIndex = 0;
+    let userTier = localStorage.getItem('user_tier') || 'none'; // 'none', 'basic', 'pro'
+    let selectedCheckoutTier = 'basic';
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      updateAccessUI();
+      renderSidebar();
+      renderSlide(0);
+    });
+
+    // NAVIGATION & VIEW SWITCHING
+    function switchView(viewName) {
+      const landing = document.getElementById('view-landing');
+      const viewer = document.getElementById('view-viewer');
+      
+      if (viewName === 'viewer') {
+        landing.classList.add('hidden');
+        viewer.classList.remove('hidden');
+      } else {
+        viewer.classList.add('hidden');
+        landing.classList.remove('hidden');
+      }
+    }
+
+    function scrollToPricing() {
+      document.getElementById('pricing-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // UPDATE UI BASED ON USER ACCESS TIER
+    function updateAccessUI() {
+      const badge = document.getElementById('tier-badge');
+
+      if (userTier === 'pro') {
+        badge.innerText = "FULL MEDICAL";
+        badge.className = "px-2 py-0.5 rounded text-[10px] font-mono bg-brand-500/20 text-brand-300 border border-brand-500/40 font-bold";
+      } else if (userTier === 'basic') {
+        badge.innerText = "BASIC TIER";
+        badge.className = "px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700";
+      } else {
+        badge.innerText = "DEMO MODE";
+        badge.className = "px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20";
+      }
+    }
+
+    // RENDER SIDEBAR MODULES
+    function renderSidebar() {
+      const container = document.getElementById('modules-list');
+      container.innerHTML = '';
+
+      slidesData.forEach((slide, idx) => {
+        const item = document.createElement('div');
+        const isActive = idx === currentSlideIndex;
+
+        item.className = `p-2.5 rounded-lg border cursor-pointer transition flex items-center justify-between ${
+          isActive 
+            ? 'bg-brand-500/10 border-brand-500/40 text-brand-300 font-medium' 
+            : 'bg-slate-900/50 border-slate-800/80 text-slate-400 hover:bg-slate-800/60'
+        }`;
+
+        item.onclick = () => goToSlide(idx);
+
+        item.innerHTML = `
+          <div class="flex items-center gap-2 overflow-hidden pr-2">
+            <span class="font-mono text-[10px] text-slate-500">${idx + 1}.</span>
+            <span class="truncate">${slide.title}</span>
+          </div>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-600 shrink-0"></i>
+        `;
+        container.appendChild(item);
+      });
+      lucide.createIcons();
+    }
+
+    // RENDER SLIDE CONTENT
+    function renderSlide(index) {
+      currentSlideIndex = index;
+      const slide = slidesData[index];
+      const container = document.getElementById('slide-content-container');
+      
+      // Update Headers
+      document.getElementById('slide-module-title').innerHTML = `<i data-lucide="folder" class="w-4 h-4"></i> ${slide.module}`;
+      document.getElementById('slide-counter').innerText = `Slide ${index + 1} / ${slidesData.length}`;
+
+      // Navigation button states
+      document.getElementById('btn-prev').disabled = index === 0;
+      document.getElementById('btn-next').disabled = index === slidesData.length - 1;
+
+      const isProUnlocked = userTier === 'pro';
+
+      container.innerHTML = `
+        <div class="space-y-3">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">
+            Slide ${index + 1} Protocol
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">${slide.title}</h2>
+        </div>
+
+        <!-- Haupttext -->
+        <div class="glass-card p-6 rounded-2xl border-slate-800 text-slate-300 text-sm leading-relaxed space-y-4">
+          <p class="text-justify sm:text-left">${slide.text}</p>
+        </div>
+
+        <!-- Praktische Anwendung (Immer in Basic & Pro sichtbar) -->
+        ${slide.practical ? `
+          <div class="p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 space-y-2">
+            <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider">
+              <i data-lucide="check-circle" class="w-4 h-4"></i>
+              Praktische Anwendung (Basic Protocol)
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">${slide.practical}</p>
+          </div>
+        ` : ''}
+
+        <!-- Medizinische Vertiefung (Freigeschaltet mit Pro / Gesperrt in Basic) -->
+        ${slide.medicalInfo ? (
+          isProUnlocked ? `
+            <div class="p-5 rounded-2xl bg-brand-500/10 border border-brand-500/30 space-y-2">
+              <div class="flex items-center gap-2 text-brand-400 font-bold text-xs uppercase tracking-wider">
+                <i data-lucide="microscope" class="w-4 h-4"></i>
+                Medizinisch-Biochemische Analyse (Medical Edition)
+              </div>
+              <p class="text-xs text-slate-200 leading-relaxed font-mono">${slide.medicalInfo}</p>
+            </div>
+          ` : `
+            <div class="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/20 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wider">
+                  <i data-lucide="lock" class="w-4 h-4"></i>
+                  Medizinische &amp; Biochemische Detail-Analyse
+                </div>
+                <span class="text-[10px] font-mono bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Medical Edition</span>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Die tiefe anatomische, endokrinologische und molekularbiologische Aufarbeitung dieser Folie ist der <strong>Medical &amp; Advanced Edition (39,99 €)</strong> vorbehalten.
+              </p>
+              <button onclick="switchView('landing'); scrollToPricing();" class="text-xs text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1">
+                <span>Auf Full Medical upgraden</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          `
+        ) : ''}
+      `;
+
+      renderSidebar();
+      lucide.createIcons();
+    }
+
+    // SLIDE NAVIGATION CONTROLS
+    function nextSlide() {
+      if (currentSlideIndex < slidesData.length - 1) {
+        renderSlide(currentSlideIndex + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        renderSlide(currentSlideIndex - 1);
+      }
+    }
+
+    function goToSlide(index) {
+      renderSlide(index);
+    }
+
+    // CHECKOUT SIMULATION
+    function openCheckout(tier, price) {
+      selectedCheckoutTier = tier;
+      document.getElementById('checkout-package-name').innerText = tier === 'pro' ? 'Full Medical Edition' : 'Basic Edition';
+      document.getElementById('checkout-package-price').innerText = price;
+      document.getElementById('checkout-modal').classList.remove('hidden');
+    }
+
+    function closeCheckout() {
+      document.getElementById('checkout-modal').classList.add('hidden');
+    }
+
+    function processSimulatedPayment() {
+      userTier = selectedCheckoutTier;
+      localStorage.setItem('user_tier', userTier);
+      
+      closeCheckout();
+      updateAccessUI();
+      switchView('viewer');
+      renderSlide(currentSlideIndex);
+      
+      alert(`Vielen Dank! Dein Zugang für die ${selectedCheckoutTier === 'pro' ? 'Full Medical Edition (39,99 €)' : 'Basic Edition (19,99 €)'} wurde erfolgreich freigeschaltet.`);
+    }
+
+    // KEYBOARD NAVIGATION
+    document.addEventListener('keydown', (e) => {
+      const viewer = document.getElementById('view-viewer');
+      if (!viewer.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>
