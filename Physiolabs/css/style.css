@@ -1,4 +1,3 @@
-﻿```css
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -39,4 +38,3 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-```
